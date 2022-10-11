@@ -65,19 +65,21 @@ gg_scatter <- function(dat, yvar, is_abund = TRUE) {
   
   p_int <- ggplotly(p) 
   
-  p_build <- plotly_build(p_int)
+  # p_build <- plotly_build(p_int)
+  # 
+  # for(i in 1:max(dat$gen)) {
+  #   ii <- i + (-2:2) # get a range of indices centered at the current gen
+  #   ii <- ii[ii %in% dat$gen] # limit to only valid indices. 
+  #   ii <- ii[ii != 0] # no zeros
+  #   
+  #   # set x and y lims for frame `i`
+  #   p_build$x$frames[[i]]$layout <- list(xaxis = list(range = range(dat$rank[ii])), 
+  #                                    yaxis = list(range = range(dat[[yvar]][ii])))
+  # }
+  # 
+  # p_int <- p_build %>%
   
-  for(i in 1:max(dat$gen)) {
-    ii <- i + (-2:2) # get a range of indices centered at the current gen
-    ii <- ii[ii %in% dat$gen] # limit to only valid indices. 
-    ii <- ii[ii != 0] # no zeros
-    
-    # set x and y lims for frame `i`
-    p_build$x$frames[[i]]$layout <- list(xaxis = list(range = range(dat$rank[ii])), 
-                                     yaxis = list(range = range(dat[[yvar]][ii])))
-  }
-  
-  p_int <- p_build %>%
+  p_int <- p_int %>%
     animation_opts(250, transition = 10) %>%
     animation_slider(currentvalue = list(prefix = "Gen = ", font = list(color = "black")))
   

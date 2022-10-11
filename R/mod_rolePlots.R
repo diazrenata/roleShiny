@@ -82,7 +82,7 @@ mod_rolePlots_server <- function(id,
                                 rich = richness,
                                 traits = rawTraits,
                                 hillTrait = hillTrait), 
-                    moreArgs = list(hillAbund = list(q = 1:3)))
+                    moreArgs = list(hillAbund = list(q = c(1-1e-15, 2, 3))))
         ss[,"gen"] <- allSims()$meta@experimentMeta$generations
         
         return(ss)
@@ -120,7 +120,7 @@ mod_rolePlots_server <- function(id,
         
         fig_abundTime <-  reactive({
           
-          plotly_ts(dat = sumstats(), yvar = "hillAbund_2")
+          plotly_ts(dat = sumstats(), yvar = "hillAbund_1")
     
         }) 
         

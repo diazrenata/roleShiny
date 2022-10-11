@@ -120,7 +120,7 @@ mod_rolePlots_server <- function(id,
         
         fig_abundTime <-  reactive({
           
-          plotly_ts(dat = sumstats(), yvar = "hillAbund_1")
+          plotly_ts(dat = sumstats(), yvar = "hillAbund_2")
     
         }) 
         
